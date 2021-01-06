@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Listado de Estudiantes - formato 1
+{% endblock %}
+
+
+{% block content %}
+<h2>Listado de Estudiantes</h3>
+<h3>Número de estudiantes {{ numero_estudiantes }}</h3>
+<br/>
+<br/>
+
+{% for e in estudiantes %}
+
+  {{e}}<br/>
+
+{% endfor %}
+
+{% endblock %}
