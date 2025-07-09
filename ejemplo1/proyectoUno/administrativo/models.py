@@ -8,9 +8,16 @@ class Estudiante(models.Model):
     cedula = models.CharField(max_length=30, unique=True)
 
     def __str__(self):
-        return "%s %s %s" % (self.nombre, 
+        return "%s %s %s" % (self.nombre,
                 self.apellido,
                 self.cedula)
+
+    def get_ciudad(self):
+        ciudad = "Sin ciudad"
+        ced = self.cedula[0:2]
+        if ced == "11":
+            ciudad = "Loja"
+        return ciudad
 
 class NumeroTelefonico(models.Model):
     telefono = models.CharField(max_length=100)
@@ -19,4 +26,3 @@ class NumeroTelefonico(models.Model):
 
     def __str__(self):
         return "%s tipo: %s" % (self.telefono, self.tipo)
-

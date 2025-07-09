@@ -6,22 +6,27 @@
 
 {% block content %}
 
-<h2>Listado de Estudiantes</h3>
+<h2>Listado de Estudiantes - d</h2>
 <h3>Número de estudiantes {{ numero_estudiantes }}</h3>
-<table>
-<tr>
-  <td>Nombre</td>
-  <td>Apellido</td>
-  <td>Cédula</td>
-  <td>Teléfonos</td>
-  <td>Opciones</td>
-</tr>  
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Cédula</th>
+      <th>Ciudad</th>
+      <th>Teléfonos</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
 {% for e in estudiantes %}
 
 <tr>
   <td>{{e.nombre}}</td>
   <td>{{e.apellido}}</td>
   <td>{{e.cedula}}</td>
+  <td>{{e.get_ciudad}}</td>
   <td>
       {% if e.numerotelefonico_set.count > 0%}
         <b># {{e.numerotelefonico_set.count}}</b>
@@ -41,8 +46,14 @@
      <br/>
      <span><a href="{% url 'crearTelefono' e.id%}">agregar teléfono</a></span>
    </td>
-</tr>  
+</tr>
 {% endfor %}
 
 </table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
 {% endblock %}
